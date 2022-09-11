@@ -56,7 +56,7 @@ class LoginController extends Controller
 
     public function studentLogin(Request $request)
     {
-        $this->validateLogin($request);
+        $this->validateRoleLogin($request);
         
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -68,7 +68,7 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
+        if ($this->attemptRoleLogin($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -86,7 +86,7 @@ class LoginController extends Controller
 
     public function teacherLogin(Request $request)
     {
-        $this->validateLogin($request);
+        $this->validateRoleLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -98,7 +98,7 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
+        if ($this->attemptRoleLogin($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -116,7 +116,7 @@ class LoginController extends Controller
 
     public function administratorLogin(Request $request)
     {
-        $this->validateLogin($request);
+        $this->validateRoleLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -128,7 +128,7 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
+        if ($this->attemptRoleLogin($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -142,5 +142,26 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    protected function validateRoleLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'role_id' => 'required'
+        ]);
+    }
+
+    protected function attemptRoleLogin(Request $request)
+    {
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->boolean('remember')
+        );
+    }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password', 'role_id');
     }
 }
