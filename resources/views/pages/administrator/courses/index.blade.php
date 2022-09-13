@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h4>Dashboard</h4>
+            <h4>Course Management</h4>
             <div class="row">
                 <div class="col-md-4 text-center my-4 rounded">
                     <div class="p-2 bg-white">
