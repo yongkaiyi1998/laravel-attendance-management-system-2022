@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container m-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,7 +12,7 @@
                         @csrf
 
                         {{-- role id == 0 --}}
-                        <input id="role_id" type="text" value="1" required hidden>
+                        <input id="role_id" type="text" value="0" required hidden>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -57,7 +57,7 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Login as Student') }}
                                 </button>
 
                                 @if (Route::has('password.request'))

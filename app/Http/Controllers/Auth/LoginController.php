@@ -156,11 +156,11 @@ class LoginController extends Controller
     protected function attemptRoleLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->boolean('remember')
+            $this->rolesCredentials($request), $request->boolean('remember')
         );
     }
 
-    protected function credentials(Request $request)
+    protected function rolesCredentials(Request $request)
     {
         return $request->only($this->username(), 'password', 'role_id');
     }

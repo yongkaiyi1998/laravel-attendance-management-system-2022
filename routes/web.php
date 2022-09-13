@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 // credentials
 Auth::routes();
@@ -23,3 +23,25 @@ Route::get('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 's
 Route::post('/student/login', [App\Http\Controllers\Auth\LoginController::class, 'studentLogin'])->name('student.login');
 Route::post('/teacher/login', [App\Http\Controllers\Auth\LoginController::class, 'teacherLogin'])->name('teacher.login');
 Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'administratorLogin'])->name('administrator.login');
+
+// administrator
+Route::prefix('admin')->group(function () {
+    // student
+    Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+    
+    // teacher
+    Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
+
+    // course
+    Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
+
+    // class
+    Route::get('/classes', [App\Http\Controllers\ClassesController::class, 'index'])->name('classes.index');
+
+    // attendance
+    Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('attendance.index');
+
+    // account
+    Route::get('/account', [App\Http\Controllers\UserController::class, 'index'])->name('account.index');
+
+});
