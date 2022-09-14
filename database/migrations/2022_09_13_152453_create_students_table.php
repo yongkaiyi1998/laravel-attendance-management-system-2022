@@ -15,9 +15,8 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->string('email');
-            $table->string('password');
             $table->string('phone')->nullable();
             $table->string('year')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
@@ -25,6 +24,10 @@ class CreateStudentsTable extends Migration
             $table->string('address')->nullable();
             $table->string('image_path')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
