@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
 // credentials
 Auth::routes();
 Route::get('/student/login', [App\Http\Controllers\Auth\LoginController::class, 'showStudentLoginForm'])->name('student.signin');
@@ -23,6 +21,9 @@ Route::get('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 's
 Route::post('/student/login', [App\Http\Controllers\Auth\LoginController::class, 'studentLogin'])->name('student.login');
 Route::post('/teacher/login', [App\Http\Controllers\Auth\LoginController::class, 'teacherLogin'])->name('teacher.login');
 Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'administratorLogin'])->name('administrator.login');
+
+// dashboard
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 // administrator
 Route::prefix('admin')->group(function () {
