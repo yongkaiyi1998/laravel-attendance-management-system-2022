@@ -26,7 +26,7 @@ Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class, '
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 // administrator
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function(){
     // student
     Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
     
@@ -44,5 +44,4 @@ Route::prefix('admin')->group(function () {
 
     // account
     Route::get('/account', [App\Http\Controllers\UserController::class, 'index'])->name('account.index');
-
 });
