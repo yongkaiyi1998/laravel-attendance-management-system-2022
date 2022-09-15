@@ -16,7 +16,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('pages.administrator.students.index');
+        $data['students'] = Student::all();
+        return view('pages.administrator.students.index')->with($data);
     }
 
     /**

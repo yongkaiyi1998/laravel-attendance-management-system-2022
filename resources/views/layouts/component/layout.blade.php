@@ -1,6 +1,6 @@
 @include('layouts.component.header_navbar')
 <div id="app" class="container-fluid">
-    <div class="row min-vh-100 flex-column flex-md-row">
+    <div class="row flex-column flex-md-row min-vh-100">
         @auth
             @include('layouts.component.left_navbar')
         @endauth
