@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
 // credentials
 Auth::routes();
 Route::get('/student/login', [App\Http\Controllers\Auth\LoginController::class, 'showStudentLoginForm'])->name('student.signin');
@@ -24,8 +22,11 @@ Route::post('/student/login', [App\Http\Controllers\Auth\LoginController::class,
 Route::post('/teacher/login', [App\Http\Controllers\Auth\LoginController::class, 'teacherLogin'])->name('teacher.login');
 Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'administratorLogin'])->name('administrator.login');
 
+// dashboard
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 // administrator
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function(){
     // student
     Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
     
@@ -43,5 +44,4 @@ Route::prefix('admin')->group(function () {
 
     // account
     Route::get('/account', [App\Http\Controllers\UserController::class, 'index'])->name('account.index');
-
 });
