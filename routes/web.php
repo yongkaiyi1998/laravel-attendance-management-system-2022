@@ -29,6 +29,8 @@ Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->nam
 Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function(){
     // student
     Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+    Route::get('/student/show/{student?}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+    Route::get('/student/edit/{student?}', [App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
     
     // teacher
     Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');

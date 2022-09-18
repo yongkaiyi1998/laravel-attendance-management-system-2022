@@ -85,7 +85,14 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        
+        if(!$student){
+            abort(404);
+        }
+        $user = User::find($student['user_id']);
+        $student['email'] = $user['email'];
+        return response()->json([
+            'student' => $student
+        ], 200);
     }
 
     /**
@@ -96,7 +103,12 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        if(!$student){
+            abort(404);
+        }
+        return response()->json([
+            'student' => $student
+        ], 200);
     }
 
     /**
