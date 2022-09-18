@@ -50,6 +50,7 @@
 @include('pages.administrator.students.modal.view')
 {{-- route --}}
 <script>
+    let imageUrl = "{{ asset('images/') }}";
     let showStudentUrl = "{{ route('student.show') }}";
     let editStudentUrl = "{{ route('student.edit') }}";
 </script>

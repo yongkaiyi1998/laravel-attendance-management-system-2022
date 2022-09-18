@@ -14,6 +14,9 @@ $(document).on('click', '.view-btn', function () {
         success: function(res){
             if(res.student){
                 let student = res.student;
+                if(student.image_path){
+                    $('#viewModal #avatar').attr("src", imageUrl+'/'+student.image_path);
+                }
                 $('#viewModal #name').text(student.name);
                 $('#viewModal #year').text(student.year);
                 $('#viewModal #gender').text(student.gender == 'male'?'Male':'Female');

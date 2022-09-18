@@ -9,7 +9,7 @@
           <div id="user" class="container profile">
               <div class="row">
                 <div class="col text-center mt-3 px-5">
-                  <img src="{{ asset('images/student/2.jpg') }}" class="rounded img-thumbnail" style="width: 200px; height: auto;" id="" />
+                  <img src="{{ asset('images/default.jpg') }}" class="rounded img-thumbnail" style="width: 200px; height: auto;" id="avatar" />
                   <h2 class="mt-3" id="name"></h2>
                 </div>
               </div>
