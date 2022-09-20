@@ -2,8 +2,8 @@ $(document).on('click', '#add-btn', function () {
     $('#modal').appendTo('body').modal('show');
 });
 
-$('#addTaxUserModal').on('hidden.bs.modal', function () {
-    resetModalForm('#addTaxUserForm', '#validationErrorsBox');
+$('#modal').on('hidden.bs.modal', function () {
+    resetModalForm('#form', '#validationErrorsBox');
 });
 
 $(document).on('click', '.view-btn', function () {
