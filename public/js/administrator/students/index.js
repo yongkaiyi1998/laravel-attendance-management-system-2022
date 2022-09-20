@@ -1,5 +1,5 @@
-$(document).on('click', '.add_tax_user', function () {
-    $('#addTaxUserModal').appendTo('body').modal('show');
+$(document).on('click', '#add-btn', function () {
+    $('#modal').appendTo('body').modal('show');
 });
 
 $('#addTaxUserModal').on('hidden.bs.modal', function () {

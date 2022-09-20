@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="justify-content-between row">
-                <h4 class="col m-0 d-flex align-items-center">Student Management</h4>
+                <div class="col m-0 d-flex align-items-center">
+                    <h4 class="col m-0 d-flex align-items-center">Student Management</h4>
+                    <button type="button" id="add-btn" class="btn btn-secondary">+</button>
+                </div>
                 <div class="input-group border rounded-pill p-1 col">
                     <div class="input-group-prepend border-0">
                         <button id="search-btn" type="button" class="btn btn-link text-info"><i class="bi bi-search"></i></button>
